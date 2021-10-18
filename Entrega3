@@ -1,0 +1,602 @@
+matriz= []
+
+def alta_empleado():
+
+  global lista
+  lista = []
+ 
+  #1 preguntar por los distintos a las enfermedades
+  #1.1 guardar en una lista
+  #2 validar que los datos de las enfermedades sean correctos
+  #2.2si no son correctos volver a preguntar hasta que sean correctos usando un while
+  #2.3 cuando los datos son correcot se guardan en una lista
+  #3 Guardar las listas en una lista llamada matriz
+  #Mandar a llamar a la función para grabar 
+
+  #Plan de pruebas
+  #La lista se guarda correctamente (los 12 elementos se gusrdan) en cada lista 
+  #Para las enfermedades solo acepta número 0 o 1
+
+  ID =float(input("Teclea el id del empleado"))
+
+  lista.append(ID)
+  
+  nombre = str(input("Teclea el nombre del empleado"))
+
+  lista.append(nombre)
+
+  edad = (input("Teclea la edad del empleado"))
+
+  lista.append(edad)
+
+  peso =  float(input("Teclea el paso (Kg.)"))
+
+  lista.append(peso)
+
+  estatura =  float(input("Teclea la estatura Mts."))
+
+  lista.append(estatura)
+
+  Diabetes = float(input("Diabetes 1-Sí 0- No ?")) 
+  while True :
+    if Diabetes == 0 or Diabetes == 1: 
+      lista.append(Diabetes)
+      break
+
+
+    else:
+      print("Teclee una opción valida ")
+      Diabetes = float(input("Diabetes 1-Sí 0- No ?"))
+    
+    
+      
+
+
+  Hipertensión = float(input("Hipertensión 1-Sí 0- No ?"))
+  while True :
+    if Hipertensión == 0 or Hipertensión == 1: 
+      lista.append(Hipertensión)
+      break
+
+
+    else:
+      print("Teclee una opción valida ")
+      Hipertensión = float(input("Hipertensión 1-Sí 0- No ?"))
+
+
+ 
+
+  Corazón = float(input("Enfermedades del corazón 1-Sí 0- No ?"))
+  while True :
+    if Corazón == 0 or Corazón == 1: 
+      lista.append(Corazón)
+      break
+
+
+    else:
+      print("Teclee una opción valida ")
+      Corazón = float(input("Corazón 1-Sí 0- No ?"))
+       
+    
+
+  Cancer = float(input("Cancer 1-Sí 0- No ?"))
+  while True :
+    if Cancer == 0 or Cancer == 1: 
+      lista.append(Cancer)
+      break
+
+
+    else:
+      print("Teclee una opción valida ")
+      Cancer = float(input("Cancer 1-Sí 0- No ?"))
+
+
+  Tabaquismo = float(input("Tabaquismo 1-Sí 0-No"))
+  while True :
+    if Tabaquismo  == 0 or Tabaquismo  == 1: 
+      lista.append(Tabaquismo)
+      break
+
+
+    else:
+      print("Teclee una opción valida ")
+      Tabaquismo  = float(input("Tabaquismo  1-Sí 0- No ?"))
+
+
+  Vacuna = float(input("Vacuna Covid-19 1-Sí 0- No ?"))
+  while True :
+    if Vacuna   == 0 or Vacuna   == 1: 
+      lista.append(Vacuna )
+      break
+
+
+    else:
+      print("Teclee una opción valida ")
+      Vacuna  = float(input("Vacuna  1-Sí 0- No ?"))
+
+
+
+  Departamento = (input("Teclea el número de departamento"))
+
+  lista.append(Departamento)
+  matriz.append(lista)
+  print(matriz)
+  guardar_archivo(nombre_archivo)
+
+
+
+
+
+
+
+
+
+
+#____________________________________________________________________________________________________________________________________________________________________________
+#____________________________________________________________________________________________________________________________________________________________________________
+  
+  
+#Calcular IMC
+#
+def calcular_IMC():
+   #Realizar el calculo del IMC con los datos de la matriz de empleados
+   #Clasificar el rango en el que se encuentra el empleado
+   #Craer un ciclo que clasifique el rango para cada uno de los empleados
+   #Crear un contador para cada una do los rangos
+   #Calcular el porcentaje de personas que se ubican en cada rango usando los contadores
+   #Crear un nuevo cilo para dar formato a las enefermedades de cada empleado que se obtuvo de la matriz de empleados
+   #Si la persona seleccionó tener una enfermedad se imprime el nombre de la misma sino se imprime: -----
+   #Crear un contador para cada una de las enfermedades
+   #Calcular el porcentaje usando los contadores 
+   #Imprimir los datos usando el formato f string
+   #Fin de la función
+
+   #Plan de prueba
+   #Se imprimen los datos de forma correcta para cada uno de los empleados
+   #Los porcentajes concuerdan con los datos ingresados para cada enfermedad 
+
+  
+    matriz = leer_archivo(nombre_archivo)
+
+    contpb = 0
+    contpn =0
+    contsp = 0
+    contob = 0
+    
+
+    
+    for posición in range(len(matriz)):
+   
+
+
+
+      imc = float(matriz[posición][3])/(float(matriz[posición][4])*float(matriz[posición][4]))
+
+      
+
+
+      global clasificacion
+      
+
+   
+      if imc < 20:
+        clasificacion = "peso bajo"
+        contpb += 1
+        
+      elif imc>= 20 and imc < 25:
+        clasificacion ="Peso normal"
+        contpn += 1
+        
+
+      elif imc>=25 and imc<30:
+        clasificacion ="Sobrepeso"
+        contsp += 1
+        
+      elif imc>=30 and imc<40:
+        clasificacion  ="Obesidad"
+
+        contob += 1
+      
+    ppb = (contpb/(len(matriz))) * 100
+    ppn = (contpn/(len(matriz))) * 100
+    psp = (contsp/(len(matriz))) * 100
+    pob = (contob/(len(matriz))) * 100
+
+
+      
+    print(f'{"Clasificación":<15}{"IMC":<15}{"ID":<15}{"Nombre":<15}{"Peso":<15}{"altura":30}{"Enfermedades":<60}{"Vacuna":<15}')
+
+
+    global contd
+    global conth
+    global contc 
+    global contca
+    global contt
+    global contv
+   
+
+    contd = 0
+    conth = 0
+    contc = 0
+    contca = 0
+    contt = 0
+    contv = 0
+
+
+
+
+ 
+
+    for lista in range(len(matriz)):
+        
+        
+        if matriz[lista][5] == "0.0":
+          diabetes = "_____"
+        else:
+          diabetes = "diabetes"
+          contd += 1
+          
+        if matriz[lista][6]=="0.0":
+          hipertension = "_____"
+        else:
+          hipertension = "hipertensión"
+          conth += 1
+        
+        if matriz[lista][7]=="0.0":
+          corazon = "_____"
+        else:
+          corazon = "Corazon"
+          contc += 1
+       
+        if matriz[lista][8]=="0.0":
+          cancer = "_____"
+        else:
+          cancer = "Cancer"
+          contca += 1
+        
+        if matriz[lista][9]=="0.0":
+          tabaquismo = "_____"
+        else:
+          tabaquismo = "tabaquismo"
+          contt += 1
+        
+        
+        if matriz[lista][10]=="0.0":
+          vacuna = "____"
+        else: 
+          vacuna = "vacuna"
+          contv += 1
+     
+        global pca
+        global pc
+        global pt
+        global ph
+        global pd
+
+        pca = (contca/len(matriz))*100
+        pc = (contc/len(matriz))*100
+        pt = (contt/len(matriz))*100
+        ph = (conth/len(matriz))*100
+        pd = (contd/len(matriz))*100
+
+        print(f'{clasificacion:<15}{imc:<15}{matriz[lista][0]:<15}{matriz[lista][1]:<15}{matriz[lista][3]:<15}{matriz[lista][4]:<15}{diabetes:<15}{hipertension:<15}{corazon:<15}{cancer:<15}{tabaquismo:<15}{vacuna}')
+    print(f'{"Diagnostico":>120}{"Canidad ":>15}{"Porcentaje":>15}')
+    print(f'{"peso bajo":>120}{contpb:>15}{ppb:>15}')
+    print(f'{"peso normal":>120}{contpn:>15}{ppn:>15}') 
+    print(f'{"sobrepeso":>120}{contsp:>15}{psp:>15}') 
+    print(f'{"obesidad":>120}{contob:>15}{pob:>15}') 
+    
+
+
+
+
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+def consultar_empleado():
+
+    #Plan de pruebas
+    #Despliega la lista del empleado solo cuando el id es vpalido
+    #Despliega la lista del empleado correspondiente a su ID
+    #Si el id no es válido no despliega nada
+    matriz = leer_archivo(nombre_archivo)
+    id = float(input("ingrese el id "))
+    variable = 1
+    #se compara la variable dentro de la matriz
+    for lugar in range(len(matriz)):
+        if float(matriz[lugar][0]) == id:
+            print("el empleado es valido")
+            print(matriz[lugar])
+           
+            variable = 0   
+    if variable == 1:
+        print("Usuario no valido")
+       
+    
+#Llama a la función leer_archivo para obtener los datos
+#Preguntar por un id
+#comparar si el id ingresado existe dentro de las listas de empleados
+#Si es existente imprime "el usuario es valido" ,imprime la respectiva lista
+#Si no es existente impriem usuario no valido
+#Termina función
+
+
+
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+def cambia_informacion():
+  #Hola profe, esta función funcionaba antes de que implementará los archivos
+  #Pero estoy teniendo problemas para que se guarde
+  #La primera parte de la función verificar id y el presionar enter si funcionan
+  
+  matriz = leer_archivo(nombre_archivo)
+  id = float(input("ingrese el id "))
+  variable = 1
+   
+  for lugar in range(len(matriz)):
+    if float(matriz[lugar][0]) == id:
+      print("el empleado es valido")
+      print(matriz[lugar])
+      Act_dato =input("Desea actualizar los datos? si- enter no-apriete cualquier tecla ")
+      if Act_dato=="":
+        NuevoID= float(input("Ingresenuevo  el ID del empleado"))
+
+        NuevoNombre= str(input("Teclea el nuevo nombre del empleado"))
+        lista.append(NuevoNombre)
+        NuevaEdad= float(input("Teclea la nueva edad"))
+        lista.append(NuevaEdad)
+        NuevoPeso= float(input("Inngrese el nuevo peso"))
+        lista.append(NuevoPeso)
+        NuevaEstatura = float(input("Ingrese la nueva estatura"))
+        lista.append(NuevaEstatura)
+        ActualizarDiabetes = float(input("Diabetes 1-si 0-no"))
+        lista.append(ActualizarDiabetes)
+        ActualizarHipertension = float(input("Hipertension 1-si 0-no"))
+        lista.append(ActualizarHipertension)
+        ActualizarCorazon = float(input("Corazon 1-si 0-no"))
+        lista.append(ActualizarCorazon)
+        ActualizarCancer = float(input("Cancer 1-si 0-no"))
+        lista.append(ActualizarCancer)
+        ActualizarTabaquismo = float(input("Tabaquismo 1-si 0-no"))
+        lista.append(ActualizarTabaquismo)
+        ActualizarVacuna = float(input("Vacuna 1-si 0-no"))
+        lista.append(ActualizarVacuna)
+        NuevoDepartamento = float(input("NuevoDepartamento 1-si 0-no"))
+        lista.append(NuevoDepartamento)
+        guardar_archivo(nombre_archivo)
+
+      
+      variable = 0   
+  if variable == 1:
+      print("Usuario no valido")
+
+
+
+ 
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+
+ 
+def reporte_empleados():
+
+  #Despliega los datos por empleado de forma correcta, si la enfermedad == 0 depliega ------- de lo contraio despliega la enfermedad 
+  #Los porcentajes son congruentes con la información ingresada 
+
+   #Crear un nuevo cilo para dar formato a las enefermedades de cada empleado que se obtuvo de la matriz de empleados
+   #Si la persona seleccionó tener una enfermedad se imprime el nombre de la misma sino se imprime: -----
+   #Crear un contador para cada una de las enfermedades
+   #Calcular el porcentaje usando los contadores 
+   #Imprimir los datos usando el formato f string
+   #Fin de la función
+
+  matriz = leer_archivo(nombre_archivo)
+  print(f'{"ID":<15}{"Nombre":<15}{"Peso":<15}{"Altura":<15}')
+ 
+
+  global contd
+  global conth
+  global contc 
+  global contca
+  global contt
+  global contv
+   
+
+  contd = 0
+  conth = 0
+  contc = 0
+  contca = 0
+  contt = 0
+  contv = 0
+  
+  
+  for lista in range(len(matriz)):
+ 
+        
+
+    if matriz[lista][5] == "0.0":
+      diabetes = "_____"
+    else:
+      diabetes = "diabetes"
+      contd += 1
+       
+          
+    if matriz[lista][6]=="0.0":
+      hipertension = "_____"
+    else:
+      hipertension = "hipertensión"
+      conth += 1
+        
+    if matriz[lista][7]=="0.0":
+      corazon = "_____"
+    else:
+      corazon = "Corazon"
+      contc += 1
+       
+    if matriz[lista][8]=="0.0":
+      cancer = "_____"
+    else:
+      cancer = "Cancer"
+      contca += 1
+        
+    if matriz[lista][9]=="0.0":
+      tabaquismo = "_____"
+    else:
+      tabaquismo = "tabaquismo"
+      contt += 1
+        
+        
+    if matriz[lista][10]=="0.0":
+      vacuna = "____"
+    else: 
+      vacuna = "vacuna"
+      contv += 1
+
+
+    global pca
+    global pc
+    global pt
+    global ph
+    global pd
+      
+
+    pca = (contca/len(matriz))*100
+    pc = (contc/len(matriz))*100
+    pt = (contt/len(matriz))*100
+    ph = (conth/len(matriz))*100
+    pd = (contd/len(matriz))*100
+    pv = (contv/len(matriz))*100
+    print(f'{matriz[lista][0]:<15}{matriz[lista][1]:<15}{matriz[lista][3]:<15}{matriz[lista][4]:<15}{diabetes:<15}{hipertension:<15}{corazon:<15}{cancer:<15}{tabaquismo:<15}{vacuna}\n')
+
+  print(f'{"enfermedad":<20}{"cantidad %":<15}{"porcentaje":<15} \n')
+  print(f'{"Diabetes":<20}{contd:<15}{pd:<15}') 
+  print(f'{"Hipertensión":<20}{conth:<15}{ph:<15}') 
+  print(f'{"Corazón":<20}{contc:<15}{pc:<15}')
+  print(f'{"Cáncer":<20}{contca:<15}{pca:<15}')
+  print(f'{"Tabaquismo":<20}{contt:<15}{pt:<15}')
+  print(f'{"Vacunados":<20}{contv:<15}{pv:<15}')
+  print(f'{"Total empleados":<20}{len(matriz):<15}')
+  
+
+
+  
+
+  
+
+def menu():
+#Imprimir las opciones en el menú
+#preguntar por una opción
+#retornar la opción
+
+#Plan de prueba
+#Despliega el menú 
+#Pregunta al usuario por una opción del menú
+  
+  print("""
+            Sistema de Salud y Bienestar del empleado
+            1. Alta del empleado
+            2. Calcular IMC de empleados
+            3. Cambia información del empleado
+            4. Consulta un empleado
+            5. Reporte de todos los empleados
+            6. Reporte de los empleados
+            7. Salir
+            """)    
+     
+  clave = int(input("Teclea la opcion: "))
+ 
+
+  return clave
+
+
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+#_________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+def main():
+  
+  
+  #pruebas menu 
+  # valor entre los rangos
+  # despliega la opción seleccionada
+ 
+ #Plan de prueba 
+ #Si elige la opción 7 el programa termina
+ #Si elige una opción fuera de rango despliega fuera de rango y permite ingresar una nueva opción
+ #Despliega la función correcta
+  
+  while True:
+    clave = menu() 
+    
+   
+   # if clave<1 or clave>6 :
+    #  print("Selecciona una opción del menú")
+     # continue 
+
+    if clave == 1:
+      alta_empleado()
+      
+    elif clave == 2:
+      calcular_IMC()
+      open("empleados.txt","r")
+      
+    elif clave  == 3:
+      cambia_informacion()
+      
+    elif clave == 4:
+      consultar_empleado()
+
+    elif clave == 5:
+      reporte_empleados()
+    elif clave == 6:
+      print("Reporte de empleados por departamento")
+
+    elif clave == 7:
+      print("ADIOS")
+      break
+    else:
+      print("fuera de rango")
+main()
+
+    #elif clave > 7 or clave < 1:
+
+nombre_archivo = "empleados.txt"
+def guardar_archivo(nombre):
+
+  
+  with open(nombre, "w") as archivo:
+    for empleado in matriz:
+      empleado[0]= str(empleado[0])
+      empleado[3]= str(empleado[3])
+      empleado[4]= str(empleado[4])
+      empleado[5]= str(empleado[5])
+      empleado[6]= str(empleado[5])
+      empleado[7]= str(empleado[7])
+      empleado[8]= str(empleado[8])
+      empleado[9]= str(empleado[9])
+      empleado[10]= str(empleado[10])
+      texto = ",".join(empleado)
+      archivo.write(texto + "\n")
+
+
+def leer_archivo(nombre):
+  empleado = []
+  with open(nombre_archivo,"r") as archivo:
+    contenido =archivo.readlines()
+  for elemento in contenido:
+    linea = elemento.split(",")
+    linea[11] = linea[11][:-1]
+    empleado.append(linea)
+  return empleado
+
+#leer_archivo(nombre_archivo)
+
+
+      
+
+#def grabar_archivo():
+
+#while True:
+ # main()
